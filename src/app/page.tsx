@@ -1,101 +1,66 @@
+"use client";
+import { Cottage } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { menuItems } from "./data/sidebar-menu";
 import Image from "next/image";
+import { Skill } from "@/data/cv";
 
 export default function Home() {
+  const router = useRouter();
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className=" overflow-y-scroll scrollbar-thumb-gray-500 scrollbar-thin scrollbar-track-gray-50">
+      {/* <div className="flex flex-col items-center  justify-center h-screen ">
+        <div className=" bg-white w-6/12  rounded-lg shadow-md relative h-3/6 overflow-hidden">
+          <div className="bg-primary h-1/2 w-full"></div>
+          <div className=" absolute inset-0 flex items-center left-10 gap-5 ">
+            <div>
+              <Image
+                src="/img/me  .jpg"
+                alt="Me"
+                className="rounded-full bg-gray-500"
+                width={150}
+                height={150}
+              />
+            </div>
+            <div className="grid grid-rows-2 gap-4">
+              <div className="text-2xl text-white flex items-end  font-bold">
+                <div>Fahmi amrullah</div>
+              </div>
+              <div className="text-slate-500 font-semibold flex flex-col gap-4 ">
+                <div className="">Fullstak Developer</div>
+                <div>
+                  <div>
+                    <div className="grid grid-cols-5 gap-2">
+                      {Object.entries(Skill).map(([key, value]) => {
+                        return (
+                          <div
+                            key={key}
+                            className="bg-slate-200 text-center  text-sm rounded-full font-semibold p-0.5 hover:bg-primary hover:text-white duration-200 cursor-pointer"
+                          >
+                            {value.name}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div> */}
+      <div className="w-1/2  mx-auto text-justify text-xl   text-secondary italic ">
+        {/* "Saya adalah seorang Fullstack Web Developer dengan kemampuan yang
+        beragam. Saya percaya bahwa baik bekerja dalam tim maupun secara mandiri
+        memiliki tantangan unik masing-masing. Setiap pengalaman dapat
+        dikembangkan dalam setiap situasi. Membangun aplikasi bukanlah hal yang
+        sulit, namun kemampuan berkomunikasi yang baik dapat membawa hasil kerja
+        yang lebih rampung dan konkret. Proses evaluasi atas pengetahuan yang
+        kita miliki sangatlah penting. Namun, saat dihadapkan pada "Conflict of
+        Interest", kita harus dapat mengambil keputusan yang bijak untuk
+        perusahaan maupun klien."" */}
+      </div>
     </div>
   );
 }

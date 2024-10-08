@@ -14,6 +14,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui"),require("tailwind-scrollbar")],
+  daisyui: {
+    themes: ["light", "dark", "corporate", "synthwave"],
+  },
 };
 export default config;
