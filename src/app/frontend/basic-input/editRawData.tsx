@@ -41,7 +41,7 @@ const EditRawData = ({
               onClick={() => setIsEditRawData(!isEditRawData)}
             />
           </div>
-          <div className="h-full min-w-96  bg-slate-900   w-full overflow-y-scroll scrollbar-thumb-gray-500 scrollbar-thin scrollbar-track-gray-50 ">
+          <div className="h-[98vh] overflow-y-scroll scrollbar-thumb-gray-500 scrollbar-thin scrollbar-track-gray-50">
             <div
               className=" z-10 bg-red-500 text-white w-full text-center right-0 left-0  hidden"
               id="raw-invalid-json"

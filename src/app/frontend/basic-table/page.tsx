@@ -4,14 +4,7 @@ import BasicTable, {
   ToolbarComponent,
 } from "@/components/BasicTable/BasicTableV1";
 import { Column, FrameData } from "@/components/BasicTable/FrameDataType";
-import {
-  CellWifiTwoTone,
-  Close,
-  Edit,
-  EditTwoTone,
-  MoreVert,
-  UsbOffRounded,
-} from "@mui/icons-material";
+import { Edit, MoreVert, s } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import EditTableHeader from "./editTableHeader";
 import EditRawData from "./editRawData";
@@ -139,10 +132,9 @@ const BasicTablePage = () => {
   const pretify = () => {
     setStateRawDataOri(JSON.parse(JSON.stringify(stateRawData, null, "\t")));
   };
-  useEffect(()=>{
+  useEffect(() => {
     reformatTable();
-
-  },[stateRawData])
+  }, [stateRawData]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -188,7 +180,7 @@ const BasicTablePage = () => {
 
       <div
         className={`fixed z-10 top-0 left-0 bottom-5 w-96 transform transition-transform duration-300 ${
-          isEditTableHeader ? "translate-x-0" : "-translate-x-96"
+          isEditTableHeader ? "translate-x-0" : "-translate-x-[100vw]"
         }`}
       >
         <EditTableHeader
@@ -198,7 +190,6 @@ const BasicTablePage = () => {
           setStateFrameData={setStateFrameData}
         />
       </div>
-
 
       <div
         className={`fixed inset-0 h-screen bg-slate-700/80 transition-opacity duration-300 ${
@@ -227,7 +218,7 @@ const BasicTablePage = () => {
       </div>
       <div
         className={`fixed z-10 top-0 left-0 bottom-5  transform transition-transform duration-300 ${
-          isEditRawData ? "translate-x-0" : "-translate-x-full"
+          isEditRawData ? "translate-x-0" : "-translate-x-[100vw]"
         }`}
       >
         <EditRawData
@@ -238,7 +229,6 @@ const BasicTablePage = () => {
           setStateRawData={setStateRawData}
           stateRawDataOri={stateRawDataOri}
         />
-       
       </div>
 
       <div className={"w-full"}>

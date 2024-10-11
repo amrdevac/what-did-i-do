@@ -1,8 +1,9 @@
 "use client";
 import { menuItems } from "@/app/data/sidebar-menu";
 import { Cottage } from "@mui/icons-material";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'nextjs-toploader/app';
 import React from "react";
+
 
 const SidebarMenu = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -38,7 +39,7 @@ const SidebarMenu = ({ children }: { children: React.ReactNode }) => {
                   ) : (
                     <div
                       onClick={() => router.push(item.url)}
-                      className="flex items-center gap-2 text-neutral p-2 cursor-pointer hover:bg-gray-100 duration-150"
+                      className="flex items-center gap-2 text-neutral p-2 cursor-pointer hover:bg-gray-100 duration-150 select-none"
                     >
                       {item.icon} {item.label}
                     </div>

@@ -28,8 +28,8 @@ export const menuItems: MenuItem[] = [
     icon: (
       <FormatAlignCenterRounded className="text-primary" fontSize="inherit" />
     ),
-    label: "Basic Form",
-    url: "123",
+    label: "Basic Input",
+    url: "/frontend/basic-input",
   },
   {
     icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
