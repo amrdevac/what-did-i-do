@@ -14,6 +14,7 @@ import {
 } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import EditTableHeader from "./editTableHeader";
+import EditRawData from "./editRawData";
 
 const BasicTablePage = () => {
   const frameData: FrameData = {
@@ -138,6 +139,10 @@ const BasicTablePage = () => {
   const pretify = () => {
     setStateRawDataOri(JSON.parse(JSON.stringify(stateRawData, null, "\t")));
   };
+  useEffect(()=>{
+    reformatTable();
+
+  },[stateRawData])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -194,53 +199,46 @@ const BasicTablePage = () => {
         />
       </div>
 
+
+      <div
+        className={`fixed inset-0 h-screen bg-slate-700/80 transition-opacity duration-300 ${
+          isEditRawData ? "opacity-100 z-10" : "opacity-0 -z-10"
+        }`}
+      >
+        <div className="flex justify-center space-x-32 items-center h-full">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div className="w-8/12 ">
+            <div
+              className="w-full tooltip tooltip-open tooltip-top"
+              data-tip="Ubah data pada table ini dengan raw json data"
+            ></div>
+            <BasicTable
+              responsive={true}
+              showNumbering={false}
+              showToolbar={false}
+              data={stateRawData}
+              componentTombol={components}
+              frameData={stateFrameData}
+            />
+          </div>
+        </div>
+      </div>
       <div
         className={`fixed z-10 top-0 left-0 bottom-5  transform transition-transform duration-300 ${
           isEditRawData ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex justify-between p-3 bg-primary text-white items-center">
-          <div>Edit Raw Data</div>
-          <div>
-            <button
-              className="btn btn-sm  border-white text-white rounded-lg  btn-outline"
-              onClick={() => pretify()}
-            >
-              Pretify JSON
-            </button>
-          </div>
-          <Close
-            className="p-0.5 hover:bg-blue-400 rounded-full cursor-pointer transition-colors duration-200"
-            onClick={() => setIsEditRawData(!isEditRawData)}
-          />
-        </div>
-        <div className="h-full min-w-96  bg-slate-900   w-full overflow-y-scroll scrollbar-thumb-gray-500 scrollbar-thin scrollbar-track-gray-50 ">
-          <div
-            className=" z-10 bg-red-500 text-white w-full text-center right-0 left-0  hidden"
-            id="raw-invalid-json"
-          >
-            JSON tidak valid
-          </div>
-          <pre
-            suppressContentEditableWarning={true}
-            contentEditable={true}
-            onInput={(e) => {
-              const rawInvalid = document.getElementById("raw-invalid-json");
-              const textContent =
-                e.currentTarget.textContent?.replace(/;$/, "") || "";
-              try {
-                rawInvalid?.classList.add("hidden");
-                setStateRawData(JSON.parse(textContent));
-                reformatTable();
-              } catch (error) {
-                rawInvalid?.classList.remove("hidden");
-              }
-            }}
-            className=" text-green-300 p-3 text-xs w-full  max-w-lg   min-h-full"
-          >
-            {JSON.stringify(stateRawDataOri, null, "\t")}
-          </pre>
-        </div>
+        <EditRawData
+          isEditRawData={isEditRawData}
+          pretify={pretify}
+          reformatTable={reformatTable}
+          setIsEditRawData={setIsEditRawData}
+          setStateRawData={setStateRawData}
+          stateRawDataOri={stateRawDataOri}
+        />
+       
       </div>
 
       <div className={"w-full"}>
