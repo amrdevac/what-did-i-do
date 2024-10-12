@@ -1,6 +1,6 @@
 const dd = (data: any) => {
   return (
-    <pre className=" text-green-300 p-3 overflow-auto w-full resize-y h-[200px]">
+    <pre className="bg-black text-green-300 p-3 overflow-auto w-full resize-y h-[200px]">
       {JSON.stringify(data, null, "\t")};
     </pre>
   );

@@ -4,7 +4,7 @@ import BasicTable, {
   ToolbarComponent,
 } from "@/components/BasicTable/BasicTableV1";
 import { Column, FrameData } from "@/components/BasicTable/FrameDataType";
-import { Edit, MoreVert, s } from "@mui/icons-material";
+import { Edit, MoreVert   } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import EditTableHeader from "./editTableHeader";
 import EditRawData from "./editRawData";

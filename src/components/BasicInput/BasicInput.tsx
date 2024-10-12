@@ -1,6 +1,7 @@
 "use client";
 
 import useValidationStore from "@/utils/validation/validationStore";
+import { errBorder } from "@/utils/validation/validationUtils";
 import React, { ChangeEvent, useEffect, useState } from "react";
 
 export type InputChangeEvent = ChangeEvent<
@@ -47,7 +48,7 @@ interface CustomInputProps extends BaseInputProps {
   name?: string;
 }
 interface StandardInputProps extends BaseInputProps {
-  type: Exclude<InputType, 'custom'>; 
+  type: Exclude<InputType, "custom">;
   name: string;
 }
 
@@ -94,10 +95,20 @@ const BasicInput: React.FC<InputProps> = ({
 
   const dataGrid = colSpanClasses[grid - 1] || "col-span-12";
 
-
+  const validationStore = useValidationStore();
+  useEffect(() => {
+    Object.entries(validationStore.validation).forEach(([key, value]) => {
+      const inputTag = document?.querySelector(`input[name='${key}']`);
+      if (key in validationStore.validation) {
+        if (inputTag) {
+          inputTag.classList.add("border-red-500", "dark:border-red-500");
+        }
+      }
+    });
+  }, [validationStore.validation]);
   return (
     <div className={`form-group ${dataGrid}`}>
-      <label htmlFor={id} className="block text-sm font-medium  text-on-dark">
+      <label htmlFor={name} className="block text-sm font-medium  text-on-dark">
         {labelIcon && <span className="mr-2">{labelIcon}</span>}
         {label}
         {required && <span className="text-red-500"> *</span>}
@@ -165,11 +176,11 @@ const BasicInput: React.FC<InputProps> = ({
             onChange={onChange}
             onBlur={onBlur}
             required={required}
-            className={`input-on-dark 
-              block bg-white  w-full px-3 py-2 border rounded-md  shadow-sm sm:text-sm 
+            className={` 
+              input-on-dark block bg-white   w-full px-3 py-2 border  ring-red-600 ring-3 rounded-md  shadow-sm sm:text-sm 
               ${inputIcon ? "pl-10" : ""}
-              ${customClass} 
               `}
+            // ${customClass}
           />
         </div>
       )}

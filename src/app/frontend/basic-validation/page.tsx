@@ -8,7 +8,6 @@ import useBasicValidationStore from "@/store/useBasicValidationStore";
 import dd from "@/utils/dd/dd";
 import { validateInput, Validation } from "@/utils/validation/valdiation";
 import ValidationParse from "@/utils/validation/valdiationParse";
-import { errBorder } from "@/utils/validation/validationUtils";
 
 const BasicInputPage = () => {
   const mainStore = useBasicValidationStore();
@@ -20,7 +19,6 @@ const BasicInputPage = () => {
       grid: 12,
       value: mainStore.form.nama,
       placeholder: "Masukkan nama",
-      customClass: errBorder("nama"),
       bottomLable: <ValidationParse inputName={"nama"} />,
       onChange: (e: InputChangeEvent) => {
         mainStore.setForm({
@@ -42,7 +40,6 @@ const BasicInputPage = () => {
           val: e.target.value,
         });
       },
-      customClass: errBorder("deskripsi"),
       bottomLable: <ValidationParse inputName="deskripsi" />,
     },
   ];
@@ -50,7 +47,6 @@ const BasicInputPage = () => {
   return (
     <div>
       <div className="flex gap-3 text-on-dark">
-        {dd(123)}
         <div>Basic Validation V1</div>
       </div>
       <form
