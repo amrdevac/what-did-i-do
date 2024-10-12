@@ -1,7 +1,6 @@
 "use client";
 
 import useValidationStore from "@/utils/validation/validationStore";
-import { errBorder } from "@/utils/validation/validationUtils";
 import React, { ChangeEvent, useEffect, useState } from "react";
 
 export type InputChangeEvent = ChangeEvent<
