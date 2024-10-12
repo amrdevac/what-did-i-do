@@ -1,5 +1,6 @@
 "use client";
 
+import useValidationStore from "@/utils/validation/validationStore";
 import React, { ChangeEvent, useEffect, useState } from "react";
 
 export type InputChangeEvent = ChangeEvent<
@@ -11,12 +12,23 @@ interface SelectOption {
   value: string;
 }
 
-interface InputProps {
+type InputType =
+  | "text"
+  | "password"
+  | "email"
+  | "number"
+  | "date"
+  | "file"
+  | "custom"
+  | "select" // Jika Anda juga ingin menambahkan select
+  | "textarea"; // Jika Anda juga ingin menambahkan textarea
+
+export interface BaseInputProps {
   label: string;
+  bottomLable?: string | React.ReactNode;
   id?: string;
-  name?: string;
   value?: any;
-  type: string;
+  type: InputType;
   placeholder?: string;
   required?: boolean;
   grid?: number; // For grid system
@@ -25,9 +37,22 @@ interface InputProps {
   options?: SelectOption[]; // For select options
   selectedValue?: string; // For select
   custom?: React.ReactNode; // Custom input
+  customClass?: string;
   onChange?: (e: InputChangeEvent) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }
+
+interface CustomInputProps extends BaseInputProps {
+  type: "custom";
+  name?: string;
+}
+interface StandardInputProps extends BaseInputProps {
+  type: Exclude<InputType, 'custom'>; 
+  name: string;
+}
+
+export type InputProps = CustomInputProps | StandardInputProps;
+
 const getColSpanClass = (grid: number): string => {
   if (grid < 1) return "col-span-1"; // minimal 1
   if (grid > 12) return "col-span-12"; // maksimal 12
@@ -35,6 +60,7 @@ const getColSpanClass = (grid: number): string => {
 };
 const BasicInput: React.FC<InputProps> = ({
   label,
+  bottomLable,
   id,
   name,
   value,
@@ -47,6 +73,7 @@ const BasicInput: React.FC<InputProps> = ({
   options = [],
   selectedValue,
   custom,
+  customClass,
   onChange,
   onBlur,
 }) => {
@@ -67,6 +94,7 @@ const BasicInput: React.FC<InputProps> = ({
 
   const dataGrid = colSpanClasses[grid - 1] || "col-span-12";
 
+
   return (
     <div className={`form-group ${dataGrid}`}>
       <label htmlFor={id} className="block text-sm font-medium  text-on-dark">
@@ -83,8 +111,11 @@ const BasicInput: React.FC<InputProps> = ({
             value={selectedValue}
             onChange={onChange}
             onBlur={onBlur}
-            className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm  sm:text-sm bg-white input-on-dark
-            "
+            className={`
+              input-on-dark
+              block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm  sm:text-sm bg-white 
+              ${customClass}
+            `}
           >
             {options.map((option, idx) => (
               <option key={idx} value={option.value}>
@@ -101,7 +132,11 @@ const BasicInput: React.FC<InputProps> = ({
             name={name}
             onChange={onChange}
             onBlur={onBlur}
-            className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm sm:text-sm  input-on-dark"
+            className={`
+              input-on-dark 
+              block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm sm:text-sm 
+              ${customClass}
+              `}
           />
           {/* Preview for image */}
           {value && typeof value === "string" && (
@@ -130,11 +165,15 @@ const BasicInput: React.FC<InputProps> = ({
             onChange={onChange}
             onBlur={onBlur}
             required={required}
-            className={`block bg-white input-on-dark  w-full px-3 py-2 border rounded-md shadow-sm sm:text-sm 
-              ${inputIcon ? "pl-10" : ""}`}
+            className={`input-on-dark 
+              block bg-white  w-full px-3 py-2 border rounded-md  shadow-sm sm:text-sm 
+              ${inputIcon ? "pl-10" : ""}
+              ${customClass} 
+              `}
           />
         </div>
       )}
+      {bottomLable}
     </div>
   );
 };

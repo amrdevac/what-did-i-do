@@ -29,7 +29,7 @@ export default function RootLayout({
   // const checkIsDark = localStorage.getItem("isDark")
   // console.log(checkIsDark)
   return (
-  <html lang="en" data-theme="" id="main-layout">
+  <html lang="en"  id="main-layout">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-slate-100 dark:bg-slate-800 `}
       >

@@ -2,10 +2,19 @@
 import { menuItems } from "@/app/data/sidebar-menu";
 import { Cottage } from "@mui/icons-material";
 import { useRouter } from "nextjs-toploader/app";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 const SidebarMenu = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
+  const [isDark, setIsDark] = useState<boolean>(false);
+  useEffect(() => {
+    const darkMode = localStorage.getItem("dark-mode");
+    document.documentElement.classList.remove("dark");
+    if (darkMode == "true") {
+      document.documentElement.classList.add("dark");
+      setIsDark(true);
+    }
+  }, []);
   return (
     <>
       <label className=" cursor-pointer flex justify-end space-y-5 pr-10 absolute right-10 -top-3">
@@ -13,11 +22,16 @@ const SidebarMenu = ({ children }: { children: React.ReactNode }) => {
         <input
           type="checkbox"
           className="toggle toggle-primary"
+          checked={isDark}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            if (document.documentElement.classList.contains('dark')) {
-              document.documentElement.classList.remove('dark');
+            if (document.documentElement.classList.contains("dark")) {
+              setIsDark(false);
+              localStorage.setItem("dark-mode", "false");
+              document.documentElement.classList.remove("dark");
             } else {
-              document.documentElement.classList.add('dark');
+              setIsDark(true);
+              localStorage.setItem("dark-mode", "true");
+              document.documentElement.classList.add("dark");
             }
           }}
         />

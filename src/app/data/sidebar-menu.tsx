@@ -34,7 +34,13 @@ export const menuItems: MenuItem[] = [
   {
     icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
     label: "Form Validation",
-    url: "123",
+    url: "/frontend/basic-validation",
+  },
+  
+  {
+    icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
+    label: "Confirm Dialog",
+    url: "/frontend/confirm-dialog",
   },
   {
     icon: "",

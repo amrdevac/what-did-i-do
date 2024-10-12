@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import fluid, { extract } from "fluid-tailwind";
 
 const config: Config = {
   content: {
@@ -8,7 +7,6 @@ const config: Config = {
       "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
       "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
-    extract,
   },
   darkMode: "class", // Menggunakan 'class' untuk dark mode
   theme: {
@@ -19,7 +17,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("daisyui"), require("tailwind-scrollbar"), fluid],
+  plugins: [require("daisyui"), require("tailwind-scrollbar")],
   daisyui: {
     themes: [
       "light",

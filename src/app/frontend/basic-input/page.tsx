@@ -2,13 +2,14 @@
 
 import BasicInput, {
   InputChangeEvent,
+  InputProps,
 } from "@/components/BasicInput/BasicInput";
 import { ChangeEvent, useState } from "react";
 
 const BasicInputPage = () => {
   const [nama, setNama] = useState("");
 
-  const frameData = [
+  const frameData: InputProps[] = [
     {
       label: "Nama",
       type: "text",
