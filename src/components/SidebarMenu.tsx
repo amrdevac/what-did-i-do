@@ -1,23 +1,36 @@
 "use client";
 import { menuItems } from "@/app/data/sidebar-menu";
 import { Cottage } from "@mui/icons-material";
-import { useRouter } from 'nextjs-toploader/app';
-import React from "react";
-
+import { useRouter } from "nextjs-toploader/app";
+import React, { ChangeEvent } from "react";
 
 const SidebarMenu = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   return (
     <>
+      <label className=" cursor-pointer flex justify-end space-y-5 pr-10 absolute right-10 -top-3">
+        <span className="label-text"></span>
+        <input
+          type="checkbox"
+          className="toggle toggle-primary"
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            if (document.documentElement.classList.contains('dark')) {
+              document.documentElement.classList.remove('dark');
+            } else {
+              document.documentElement.classList.add('dark');
+            }
+          }}
+        />
+      </label>
       <div className="flex  h-screen  p-10 gap-5 ">
-        <div className="w-52  shadow-lg  rounded-lg border border-gray-50  overflow-hidden  bg-white">
+        <div className="w-52  shadow-lg  rounded-lg border border-gray-50   overflow-hidden   bg-white bg-on-dark">
           {/* Header top sidebar */}
-          <div className="text-primary font-bold text-2xl   flex items-center  gap-2  bg-primary p-2 justify-between uppercase">
-            <Cottage fontSize="inherit" className="text-base-100" />
-            <div className="text-base-100 text-sm">Helo</div>
+          <div className="   font-bold text-2xl   flex items-center  gap-2  bg-primary p-2 justify-between uppercase text-white">
+            <Cottage fontSize="inherit" className="" />
+            <div className=" text-sm">Helo</div>
           </div>
           {/* Short Profile */}
-          <div className="h-40  border-b">
+          <div className="h-40  border-b  bg-on-dark">
             <Cottage fontSize="inherit" className="text-base-100" />
             <div className="text-base-100 text-sm">Helo</div>
           </div>
@@ -39,7 +52,7 @@ const SidebarMenu = ({ children }: { children: React.ReactNode }) => {
                   ) : (
                     <div
                       onClick={() => router.push(item.url)}
-                      className="flex items-center gap-2 text-neutral p-2 cursor-pointer hover:bg-gray-100 duration-150 select-none"
+                      className="flex items-center gap-2  p-2 cursor-pointer select-none text-on-dark hover-on-dark"
                     >
                       {item.icon} {item.label}
                     </div>
@@ -49,7 +62,8 @@ const SidebarMenu = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
         </div>
-        <div className=" bg-white shadow-lg  rounded-xl w-full p-5">
+
+        <div className=" bg-white  dark:bg-slate-900 shadow-lg  rounded-xl w-full p-5">
           {children}
         </div>
       </div>

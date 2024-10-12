@@ -69,7 +69,7 @@ const BasicInput: React.FC<InputProps> = ({
 
   return (
     <div className={`form-group ${dataGrid}`}>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700">
+      <label htmlFor={id} className="block text-sm font-medium  text-on-dark">
         {labelIcon && <span className="mr-2">{labelIcon}</span>}
         {label}
         {required && <span className="text-red-500"> *</span>}
@@ -83,7 +83,8 @@ const BasicInput: React.FC<InputProps> = ({
             value={selectedValue}
             onChange={onChange}
             onBlur={onBlur}
-            className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm  sm:text-sm bg-white input-on-dark
+            "
           >
             {options.map((option, idx) => (
               <option key={idx} value={option.value}>
@@ -100,7 +101,7 @@ const BasicInput: React.FC<InputProps> = ({
             name={name}
             onChange={onChange}
             onBlur={onBlur}
-            className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm sm:text-sm  input-on-dark"
           />
           {/* Preview for image */}
           {value && typeof value === "string" && (
@@ -129,9 +130,8 @@ const BasicInput: React.FC<InputProps> = ({
             onChange={onChange}
             onBlur={onBlur}
             required={required}
-            className={`block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
-              inputIcon ? "pl-10" : ""
-            }`}
+            className={`block bg-white input-on-dark  w-full px-3 py-2 border rounded-md shadow-sm sm:text-sm 
+              ${inputIcon ? "pl-10" : ""}`}
           />
         </div>
       )}

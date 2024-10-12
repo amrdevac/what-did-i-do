@@ -1,11 +1,16 @@
 import type { Config } from "tailwindcss";
+import fluid, { extract } from "fluid-tailwind";
 
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: {
+    files: [
+      "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+      "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+      "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
+    extract,
+  },
+  darkMode: "class", // Menggunakan 'class' untuk dark mode
   theme: {
     extend: {
       colors: {
@@ -14,9 +19,15 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("daisyui"),require("tailwind-scrollbar")],
+  plugins: [require("daisyui"), require("tailwind-scrollbar"), fluid],
   daisyui: {
-    themes: ["light", "dark", "corporate", "synthwave"],
+    themes: [
+      "light",
+      "dark",
+      "corporate",
+      "synthwave",
+    ],
+    
   },
 };
 export default config;

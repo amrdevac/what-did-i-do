@@ -68,7 +68,7 @@ const BasicInputPage = () => {
 
   return (
     <div>
-      <div className="flex    gap-3">
+      <div className="flex    gap-3 text-on-dark">
         <div>Basic Input V1</div>
       </div>
       <form className="grid grid-cols-12 gap-6 mt-5">

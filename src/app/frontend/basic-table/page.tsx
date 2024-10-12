@@ -133,7 +133,8 @@ const BasicTablePage = () => {
     setStateRawDataOri(JSON.parse(JSON.stringify(stateRawData, null, "\t")));
   };
   useEffect(() => {
-    reformatTable();
+    if (isEditRawData) reformatTable();
+    
   }, [stateRawData]);
 
   useEffect(() => {
@@ -150,9 +151,9 @@ const BasicTablePage = () => {
   }, []);
 
   return (
-    <div className="flex h-full  gap-4   relative  ">
+    <div className="flex h-full  gap-4    ">
       <div
-        className={`fixed inset-0 h-screen bg-slate-700/80 transition-opacity duration-300 ${
+        className={`fixed inset-0 h-screen bg-slate-900/80 transition-opacity duration-300 ${
           isEditTableHeader ? "opacity-100 z-10" : "opacity-0 -z-10"
         }`}
       >
@@ -192,7 +193,7 @@ const BasicTablePage = () => {
       </div>
 
       <div
-        className={`fixed inset-0 h-screen bg-slate-700/80 transition-opacity duration-300 ${
+        className={`fixed inset-0 h-screen bg-slate-900/80 transition-opacity duration-300 ${
           isEditRawData ? "opacity-100 z-10" : "opacity-0 -z-10"
         }`}
       >
@@ -232,7 +233,7 @@ const BasicTablePage = () => {
       </div>
 
       <div className={"w-full"}>
-        <div className="flex   gap-3">
+        <div className="flex   gap-3 text-dark text-on-dark">
           <div>Basic Table V1</div>
         </div>
         <BasicTable

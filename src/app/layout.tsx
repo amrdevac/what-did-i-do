@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import SidebarMenu from "@/components/SidebarMenu";
 import NextTopLoader from "nextjs-toploader";
+import { ChangeEvent } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,23 +26,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const checkIsDark = localStorage.getItem("isDark")
+  // console.log(checkIsDark)
   return (
-    <html lang="en" data-theme="corporate">
+  <html lang="en" data-theme="" id="main-layout">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-100 `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-slate-100 dark:bg-slate-800 `}
       >
-         <NextTopLoader
-            color="#2563eb"
-            initialPosition={0.08}
-            crawlSpeed={200}
-            height={3}
-            crawl={true}
-            showSpinner={true}
-            easing="ease"
-            speed={200}
-            shadow="0 0 10px #2563eb,0 0 5px #2563eb"
-          />
-          
+        <NextTopLoader
+          color="#2563eb"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={true}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #2563eb,0 0 5px #2563eb"
+        />
+
+
         <SidebarMenu>{children}</SidebarMenu>
         {/* {children} */}
       </body>

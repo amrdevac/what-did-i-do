@@ -96,9 +96,9 @@ const BasicTable: React.FC<BasicTableProps> = ({
   );
 
   return (
-    <div className={responsive ? "overflow-x-auto overflow-y-hidden" : ""}>
+    <div className={responsive ? "overflow-x-auto overflow-y-hidden " : ""}>
       {showToolbar && (
-        <div className="flex justify-between m-4">
+        <div className="flex justify-between m-4 ">
           <div className="flex gap-4">
             <div className="relative" ref={dropdownRef}>
               <button
@@ -108,7 +108,7 @@ const BasicTable: React.FC<BasicTableProps> = ({
                 <FilterAlt fontSize="inherit" /> Kolom
               </button>
               {dropdownOpen && (
-                <div className="absolute z-10 bg-white shadow-lg rounded-md mt-1 select-none">
+                <div className="absolute z-10 dark:text-white   bg-white dark:bg-slate-700  shadow-lg rounded-md mt-1 select-none">
                   <input
                     type="text"
                     placeholder="Pilih Kolom."
@@ -152,17 +152,17 @@ const BasicTable: React.FC<BasicTableProps> = ({
           </div>
           <div className="flex items-center">
             <button
-              className="btn btn-ghost btn-xs"
+              className="btn btn-ghost dark:btn-neutral btn-xs"
               onClick={handlePrev}
               disabled={currentPage === 1}
             >
               <ChevronLeft />
             </button>
-            <button className="btn btn-ghost btn-xs text-xs">
+            <button className="btn btn-ghost dark:btn-neutral btn-xs text-xs">
               {currentPage} / {totalPages}
             </button>
             <button
-              className="btn btn-ghost btn-xs"
+              className="btn btn-ghost btn-xs dark:btn-neutral"
               onClick={handleNext}
               disabled={currentPage === totalPages}
             >
@@ -172,44 +172,44 @@ const BasicTable: React.FC<BasicTableProps> = ({
         </div>
       )}
 
-      <div className="max-h-[65vh] overflow-y-auto">
+      <div className="max-h-[65vh] overflow-y-auto  scrollbar-thumb-gray-500 scrollbar-thin scrollbar-track-gray-50">
         {loading ? (
           <div className="animate-pulse">
-            <table className="table w-full table-sm border-les bg-white rounded-md overflow-hidden h-full">
+            <table className="table w-full table-sm  bg-white dark:bg-slate-700 rounded-md overflow-hidden h-full">
               <thead className="border-b-2 border-b-blue-600">
                 <tr>
                   {showNumbering && (
                     <th className="">
-                      <div className="h-1 m-2 bg-gray-200 rounded"></div>
+                      <div className="h-1 m-2 bg-gray-200   rounded"></div>
                     </th>
                   )}
                   {frameData.data.map((col: any, idx: number) => (
                     <th
                       key={`header_${idx}`}
-                      className="h-10 m-10  bg-gray-200 rounded mb-2"
+                      className="h-10 m-10  bg-gray-200  rounded mb-2"
                     ></th>
                   ))}
                   {frameData.action && (
-                    <th className="h-10 m-10  bg-gray-200 rounded mb-2"></th>
+                    <th className="h-10 m-10  bg-gray-200  rounded mb-2"></th>
                   )}
                 </tr>
               </thead>
               <tbody>
                 {Array.from({ length: 5 }).map((_, index) => (
-                  <tr key={index} className="hover">
+                  <tr key={index} className="">
                     {showNumbering && (
                       <td className="">
-                        <div className="h-1 m-2 bg-gray-200 rounded"></div>
+                        <div className="h-1 m-2 bg-gray-200  rounded"></div>
                       </td>
                     )}
                     {frameData.data.map((col: any, idx: number) => (
                       <td key={`col_${index}_${idx}`} className="">
-                        <div className="h-1 m-2 bg-gray-200 rounded"></div>
+                        <div className="h-1 m-2 bg-gray-200  rounded"></div>
                       </td>
                     ))}
                     {frameData.action && (
                       <td className="">
-                        <div className="h-1 m-2 bg-gray-200 rounded"></div>
+                        <div className="h-1 m-2 bg-gray-200  rounded"></div>
                       </td>
                     )}
                   </tr>
@@ -218,18 +218,18 @@ const BasicTable: React.FC<BasicTableProps> = ({
             </table>
           </div>
         ) : (
-          <table className="table w-full table-sm border-les bg-white rounded-md overflow-hidden h-full">
+          <table className="table w-full table-sm  bg-white dark:bg-slate-700 dark:text-white rounded-md overflow-hidden h-full">
             <thead className="border-b-2 border-b-blue-600  ">
               <tr>
                 {showNumbering && (
-                  <th className="text-center text-black">No</th>
+                  <th className="text-center text-black dark:bg-slate-700 dark:text-white">No</th>
                 )}
                 {frameData.data.map(
                   (col: any, idx: number) =>
                     visibleColumns.includes(col.val) && (
                       <th
                         key={`header_${idx}`}
-                        className={`font-bold text-black text-${
+                        className={`font-bold text-black dark:bg-slate-700 dark:text-white text-${
                           col.align || "left"
                         }`}
                       >
@@ -246,7 +246,7 @@ const BasicTable: React.FC<BasicTableProps> = ({
             </thead>
             <tbody>
               {currentData.map((item, index) => (
-                <tr key={`row_${index}_${item.id}`} className="hover">
+                <tr key={`row_${index}_${item.id}`} className=" hover:bg-blue-50 dark:hover:bg-slate-800 border-b-slate-200 dark:border-slate-800">
                   {showNumbering && (
                     <td className="text-center">{firstIndex + index + 1}</td>
                   )}
@@ -302,7 +302,7 @@ const BasicTable: React.FC<BasicTableProps> = ({
                         </button>
                         <ul
                           tabIndex={0}
-                          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 z-10"
+                          className="dropdown-content menu p-2 shadow bg-white dark:bg-slate-800 rounded-box w-52 z-10"
                         >
                           {frameData.action.list.map(
                             (actionItem: any, idx: number) => (
