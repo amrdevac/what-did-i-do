@@ -18,7 +18,7 @@ export const ConfirmInfo = () => {
         <div className="modal-box bg-white dark:bg-slate-800 text-center flex flex-col gap-3 justify-center items-center">
           <h3 className="font-bold text-lg">Info</h3>
           <Error fontSize="large" className="text-warning" />
-          <p className=" first-letter:capitalize">{mainStore.errorMessage}</p>
+          <p className=" first-letter:capitalize">{infoStore.info.errorMsg}</p>
           {infoStore.info.errorObj &&
             errorMatrix &&
             infoStore.info.errorObj[errorMatrix.colError] && (

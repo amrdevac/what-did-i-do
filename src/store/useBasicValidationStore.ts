@@ -39,11 +39,14 @@ const useBasicValidationStore = create<BasicValidationForm>((set) => ({
     try {
       const response = await axios.get(
         "https://error2.free.beeceptor.com/validation"
+        // "https://dummyjson.com/c/4c56-57ec-4a4f-9748"
+        // "https://hub.dummyapis.com/delay?seconds=3"
       );
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const errorMessage = error.response?.data?.message || error.message;
+        console.log(errorMessage,"errorMessage")
         const errorObj = error.response?.data || error;
         console.log(errorMessage);
         set(() => ({

@@ -1,6 +1,7 @@
 import { Interface } from "readline";
 import { create, StoreApi, UseBoundStore } from "zustand";
 import useConfirmInfoStore from "./useConfirmInfoStore";
+import useLoadingStore from "../LoadingStore/useLoadingStore";
 
 // Definisikan tipe untuk DetailError
 export interface DetailErrorBase {
@@ -25,7 +26,6 @@ export interface DetailErrorLooping extends DetailErrorBase {
 export type DetailError = DetailErrorText | DetailErrorLooping;
 
 interface ConfirmationState {
-  isOpen: boolean;
   dialogBtnResult: any | null;
   showFinishModal: boolean;
   showConfirm: boolean;
@@ -38,8 +38,6 @@ interface ConfirmationState {
   btnCancel: string;
   showBtnCancel: boolean;
   isError: boolean;
-  errorMessage: string;
-  // errorObj?: any;
   errorMatrix: DetailError;
   actionOk: {
     run: () => void;
@@ -66,7 +64,6 @@ confirmationActivity["delete"] = "Apakah Anda yakin ingin menghapus data?";
 confirmationActivity["update"] = "Apakah Anda yakin ingin memperbarui data?";
 
 export const useConfirmationStore = create<ConfirmationState>((set, get) => ({
-  isOpen: false,
   dialogBtnResult: null,
   showFinishModal: true,
   showConfirm: true,
@@ -79,8 +76,6 @@ export const useConfirmationStore = create<ConfirmationState>((set, get) => ({
   btnCancel: "Batal",
   showBtnCancel: true,
   isError: false,
-  errorMessage: "default error message",
-  // errorObj: {},
   errorMatrix: {
     colError: "",
     objColError: "",
@@ -111,7 +106,7 @@ export const useConfirmationStore = create<ConfirmationState>((set, get) => ({
   },
 
   confirmDialogResult: (result) =>
-    set((state) => ({ ...state, dialogBtnResult: result, isOpen: false })),
+    set((state) => ({ ...state, dialogBtnResult: result })),
   setLoadingText: (text) => set({ loadingText: text }),
   setShowConfirm: (show) => set({ showConfirm: show }),
   setShowFinishModal: (show) => set({ showFinishModal: show }),
@@ -121,13 +116,10 @@ export const useConfirmationStore = create<ConfirmationState>((set, get) => ({
     const runFunctionsSequentially = async () => {
       for (const func of actionOk) {
         const confirmInfoStore = useConfirmInfoStore.getState();
-        set({
-          loadingText: func.loadingText || "Memproses data",
-          isLoading: true,
-        });
+        const loadingStore = useLoadingStore.getState();
+        loadingStore.setShowLoading({ isLoading: true });
         await func.run();
         const currentState = get();
-        console.log(currentState.useStore.getState());
         if ("isError" in currentState.useStore.getState()) {
           const runnerStore = currentState.useStore.getState();
           if (runnerStore.isError) {
@@ -136,7 +128,7 @@ export const useConfirmationStore = create<ConfirmationState>((set, get) => ({
             }));
 
             confirmInfoStore.setDetailError({
-              errorMessage: runnerStore.msgError,
+              errorMsg: runnerStore.msgError,
               errorObj: runnerStore.dataError,
             });
 
@@ -147,6 +139,7 @@ export const useConfirmationStore = create<ConfirmationState>((set, get) => ({
               confirmInfo.showModal();
             }
           }
+          loadingStore.setShowLoading({ isLoading: false });
           return false;
         }
       }

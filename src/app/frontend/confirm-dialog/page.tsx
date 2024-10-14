@@ -71,7 +71,6 @@ const ConfirmDialogPage = () => {
             idModal: "confirm-dialog",
             useStore: useBasicValidationStore,
             confirmText: "Apakah anda yakin ingin melakukan hal ini ?",
-            // activity: "save",
             withCustomLoading: true,
             actionOk: [
               {

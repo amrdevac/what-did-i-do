@@ -10,12 +10,18 @@ interface useLoadingState extends loadingVar {
   setShowLoading: (payload: Partial<loadingVar>) => void;
 }
 
-const useLoadingStore = create<useLoadingState>((set) => ({
+const useLoadingStore = create<useLoadingState>((set,get) => ({
   loadingTag: "basic",
   loadingText: "",
   isLoading: false,
 
-  setShowLoading: (payload) => set((state) => ({})),
+  setShowLoading: async (payload) => {
+    console.log(payload.isLoading, "payload.isLoading");
+    set((state) => ({
+      isLoading: payload.isLoading,
+    }));
+    console.log(get().isLoading, "get().isLoading");
+  },
 }));
 
 export default useLoadingStore;

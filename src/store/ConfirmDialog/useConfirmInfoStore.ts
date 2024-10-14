@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { DetailError } from "./useConfirmDialogStore";
 interface infoStruct {
-  errorMessage: string;
+  errorMsg: string;
   errorObj: any;
 }
 
@@ -11,14 +11,15 @@ interface useConfirmInfo {
 }
 const useConfirmInfoStore = create<useConfirmInfo>((set, get) => ({
   info: {
-    errorMessage: "",
+    errorMsg: "",
+    detailErrorMsg: "",
     errorObj: "",
   },
 
   setDetailError: (payload) => {
     set({
       info: {
-        errorMessage: payload.errorMessage ?? "",
+        errorMsg: payload.errorMsg ?? "",
         errorObj: payload.errorObj,
       },
     });
