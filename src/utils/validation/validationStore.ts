@@ -15,7 +15,7 @@ const useValidationStore = create<ValidateSlice>((set, get) => ({
       validation: newRule,
     })),
   resetValidation: () => {
-    const currentValidation = get().validation; // Mengambil nilai validation saat ini
+    const currentValidation = get().validation; 
     Object.entries(currentValidation).forEach(([key, value]) => {
       const inputTag = document?.querySelector(`input[name='${key}']`);
       if (key in currentValidation) {

@@ -3,7 +3,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import SidebarMenu from "@/components/SidebarMenu";
 import NextTopLoader from "nextjs-toploader";
-import { ChangeEvent } from "react";
+import { ConfirmDialog } from "@/components/ConfirmDialog/ConfirmDialog";
+import { ConfirmInfo } from "@/components/ConfirmDialog/ConfirmInfo";
+import BasicLoading from "@/components/Loading/BasicLoading";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,10 +28,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const checkIsDark = localStorage.getItem("isDark")
-  // console.log(checkIsDark)
   return (
-  <html lang="en"  id="main-layout">
+    <html lang="en" id="main-layout">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-slate-100 dark:bg-slate-800 `}
       >
@@ -44,10 +44,9 @@ export default function RootLayout({
           speed={200}
           shadow="0 0 10px #2563eb,0 0 5px #2563eb"
         />
-
-
+        <BasicLoading />
+        <ConfirmInfo />
         <SidebarMenu>{children}</SidebarMenu>
-        {/* {children} */}
       </body>
     </html>
   );

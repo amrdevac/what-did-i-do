@@ -1,3 +1,4 @@
+import axios from "axios";
 import { create } from "zustand";
 
 interface Form {
@@ -5,9 +6,13 @@ interface Form {
   deskripsi: string;
 }
 
-interface BasicValidationForm {
+export interface BasicValidationForm {
   form: Form;
+  isError: boolean;
+  msgError: string;
+  dataError: any;
   setForm: ({ col, val }: { col: keyof Form; val: string }) => void;
+  fetchTodo: () => void;
 }
 
 const useBasicValidationStore = create<BasicValidationForm>((set) => ({
@@ -15,6 +20,9 @@ const useBasicValidationStore = create<BasicValidationForm>((set) => ({
     deskripsi: "",
     nama: "",
   },
+  isError: false,
+  msgError: "",
+  dataError: null,
   setForm: ({ col, val }) => {
     set((state) => ({
       form: {
@@ -22,6 +30,35 @@ const useBasicValidationStore = create<BasicValidationForm>((set) => ({
         [col]: val,
       },
     }));
+  },
+  fetchTodo: async () => {
+    set(() => ({
+      isError: false,
+    }));
+
+    try {
+      const response = await axios.get(
+        "https://error.free.beeceptor.com/validation"
+      );
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const errorMessage = error.response?.data?.message || error.message;
+        const errorObj = error.response?.data || error;
+        console.log(errorMessage);
+        set(() => ({
+          isError: true,
+          msgError: errorMessage,
+          dataError: errorObj,
+        }));
+      } else {
+        set(() => ({
+          isError: true,
+          msgError: "An unexpected error occurred.",
+          dataError: error,
+        }));
+      }
+    }
   },
 }));
 
