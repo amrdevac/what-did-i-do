@@ -38,7 +38,7 @@ const useBasicValidationStore = create<BasicValidationForm>((set) => ({
 
     try {
       const response = await axios.get(
-        "https://error.free.beeceptor.com/validation"
+        "https://error2.free.beeceptor.com/validation"
       );
       return response.data;
     } catch (error) {

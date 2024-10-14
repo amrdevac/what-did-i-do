@@ -48,11 +48,6 @@ const ConfirmDialogPage = () => {
   ];
 
   const useConfirmDialog = useConfirmationStore();
-  // useEffect(() => {
-  //   const asdf = document.getElementById("confirm-info") as HTMLDialogElement;
-  //   if (asdf) asdf.showModal();
-  // });
-
   return (
     <div>
       <ConfirmDialog id="confirm-dialog" />
@@ -76,16 +71,18 @@ const ConfirmDialogPage = () => {
             idModal: "confirm-dialog",
             useStore: useBasicValidationStore,
             confirmText: "Apakah anda yakin ingin melakukan hal ini ?",
-            activity: "save",
-            detailError: {
-              colError: "validationErrors",
-              typeError: "looping",
-              typeValue: "objectArr",
-              objColError: "message",
-            },
+            // activity: "save",
+            withCustomLoading: true,
             actionOk: [
               {
                 run: () => mainStore.fetchTodo(),
+                detailError: {
+                  colError: "validationErrors",
+                  typeError: "looping",
+                  typeValue: "objectArr",
+                  objColError: "message",
+                },
+                loadingText: "Memuat data",
               },
               {
                 run: () => {

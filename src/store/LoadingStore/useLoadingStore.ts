@@ -1,15 +1,21 @@
 import { create } from "zustand";
 
-interface useLoadingState {
+interface loadingVar {
   loadingTag: "basic" | "v2" | "v3";
-  showLoading: boolean;
+  isLoading: boolean;
   loadingText: string;
+}
+
+interface useLoadingState extends loadingVar {
+  setShowLoading: (payload: Partial<loadingVar>) => void;
 }
 
 const useLoadingStore = create<useLoadingState>((set) => ({
   loadingTag: "basic",
   loadingText: "",
-  showLoading: false,
+  isLoading: false,
 
-  setShowLoading: (payload: useLoadingState) => set((state) => ({})),
+  setShowLoading: (payload) => set((state) => ({})),
 }));
+
+export default useLoadingStore;

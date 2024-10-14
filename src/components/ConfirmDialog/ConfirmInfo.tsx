@@ -1,10 +1,14 @@
 "use client";
+import useConfirmInfoStore from "@/store/ConfirmDialog/useConfirmInfoStore";
 import { useConfirmationStore } from "../../store/ConfirmDialog/useConfirmDialogStore";
 import { ChevronLeft, Error } from "@mui/icons-material";
+import dd from "@/utils/dd/dd";
 
 export const ConfirmInfo = () => {
   const mainStore = useConfirmationStore();
-  const errorMatrix = mainStore.detailError;
+  const errorMatrix = mainStore.errorMatrix;
+
+  const infoStore = useConfirmInfoStore();
   return (
     <>
       <dialog
@@ -15,9 +19,9 @@ export const ConfirmInfo = () => {
           <h3 className="font-bold text-lg">Info</h3>
           <Error fontSize="large" className="text-warning" />
           <p className=" first-letter:capitalize">{mainStore.errorMessage}</p>
-          {mainStore.errorObj &&
+          {infoStore.info.errorObj &&
             errorMatrix &&
-            mainStore.errorObj[errorMatrix.colError] && (
+            infoStore.info.errorObj[errorMatrix.colError] && (
               <div className="collapse text-xs w-full text-left">
                 <input type="checkbox" className="h-0" />
                 <div className="  collapse-title flex justify-between w-full   cursor-pointer  ">
@@ -26,9 +30,9 @@ export const ConfirmInfo = () => {
                 </div>
                 {errorMatrix.typeError == "looping" && (
                   <div className="collapse-content -mt-2 text-red-300">
-                    {mainStore.errorObj[errorMatrix.colError] &&
+                    {infoStore.info.errorObj[errorMatrix.colError] &&
                       Object.entries(
-                        mainStore.errorObj[errorMatrix.colError]
+                        infoStore.info.errorObj[errorMatrix.colError]
                       ).map(([key, value]: any) => {
                         return (
                           <div key={key}>{value[errorMatrix.objColError]}</div>

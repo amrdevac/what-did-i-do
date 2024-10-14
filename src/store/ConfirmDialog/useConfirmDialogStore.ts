@@ -1,4 +1,6 @@
+import { Interface } from "readline";
 import { create, StoreApi, UseBoundStore } from "zustand";
+import useConfirmInfoStore from "./useConfirmInfoStore";
 
 // Definisikan tipe untuk DetailError
 export interface DetailErrorBase {
@@ -37,13 +39,17 @@ interface ConfirmationState {
   showBtnCancel: boolean;
   isError: boolean;
   errorMessage: string;
-  errorObj?: any;
-  actionOk: any[];
+  // errorObj?: any;
+  errorMatrix: DetailError;
+  actionOk: {
+    run: () => void;
+    loadingText?: string;
+    detailError?: DetailError;
+  }[];
   isLoading: boolean;
   withCustomLoading: boolean;
   finishText: string;
   idModal: string;
-  detailError?: DetailError;
 
   confirmDialog: (payload: Partial<ConfirmationState>) => void;
   confirmDialogResult: (result: any) => void;
@@ -74,7 +80,12 @@ export const useConfirmationStore = create<ConfirmationState>((set, get) => ({
   showBtnCancel: true,
   isError: false,
   errorMessage: "default error message",
-  errorObj: {},
+  // errorObj: {},
+  errorMatrix: {
+    colError: "",
+    objColError: "",
+    typeError: "text",
+  },
   actionOk: [],
   isLoading: false,
   withCustomLoading: false,
@@ -109,7 +120,7 @@ export const useConfirmationStore = create<ConfirmationState>((set, get) => ({
     const { actionOk, onErrorStop, showFinishModal } = get();
     const runFunctionsSequentially = async () => {
       for (const func of actionOk) {
-        let responseError = {};
+        const confirmInfoStore = useConfirmInfoStore.getState();
         set({
           loadingText: func.loadingText || "Memproses data",
           isLoading: true,
@@ -120,10 +131,15 @@ export const useConfirmationStore = create<ConfirmationState>((set, get) => ({
         if ("isError" in currentState.useStore.getState()) {
           const runnerStore = currentState.useStore.getState();
           if (runnerStore.isError) {
-            set((state) => ({
+            set(() => ({
+              errorMatrix: func.detailError,
+            }));
+
+            confirmInfoStore.setDetailError({
               errorMessage: runnerStore.msgError,
               errorObj: runnerStore.dataError,
-            }));
+            });
+
             if (onErrorStop) {
               const confirmInfo = document.getElementById(
                 "confirm-info"
