@@ -47,7 +47,7 @@ const SidebarMenu = ({ children }: { children: React.ReactNode }) => {
           </div>
           {/* Short Profile */}
           <div className="h-40  border-b  bg-on-dark text-center flex items-center justify-center flex-col   gap-4">
-            <Image
+            {/* <Image
               src={
                 "https://media.licdn.com/dms/image/v2/C4E03AQH51UzIQp50iA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1653062416024?e=1734566400&v=beta&t=2UKqCjEgOK4XVPdhBvCLeSwRF7Px5AvBHJQo8e0M0DE "
               }
@@ -55,7 +55,7 @@ const SidebarMenu = ({ children }: { children: React.ReactNode }) => {
               width={50}
               height={50}
               className="rounded-full"
-            />
+            /> */}
             <div className="text-on-dark">
               <div className="text-base-100 text-sm text-on-dark">Fahmi Amrullah</div>
               <div className="flex justify-center items-center gap-2">

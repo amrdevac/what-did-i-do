@@ -7,12 +7,12 @@
   --foreground: #171717;
 }
 
-/* @media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-} */
+}
 
 body {
   color: var(--foreground);
@@ -29,12 +29,11 @@ body {
 
 @layer components {
   .input-on-dark {
-    @apply  dark:bg-slate-800 dark:border-slate-500 dark:text-slate-400
+    @apply dark:bg-slate-800 dark:border-slate-500 dark:text-slate-400
   }
   .text-on-dark {
     @apply text-gray-700 dark:text-slate-300
   }
-  
   .bg-on-dark {
     @apply dark:bg-slate-900 dark:border-gray-700 
   }
@@ -43,11 +42,10 @@ body {
   }
 }
 
-/* styles/globals.css */
-:root {
-  --m-white: #f9f9f9; /* Warna untuk light mode */
-}
+/* :root {
+  --m-white: #f9f9f9; 
+} */
 
-.dark {
-  --m-white: "bg-slate-white"; /* Warna untuk dark mode */
-}
+/* .dark {
+  --m-white: "bg-slate-white"; 
+} */

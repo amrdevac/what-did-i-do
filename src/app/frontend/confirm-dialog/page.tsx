@@ -4,7 +4,7 @@ import BasicInput, {
   InputChangeEvent,
   InputProps,
 } from "@/components/BasicInput/BasicInput";
-import { ConfirmDialog } from "@/components/ConfirmDialog/ConfirmDialog";
+import { ConfirmDialog } from "@/store/ConfirmDialog/Components/ConfirmDialog";
 import { useConfirmationStore } from "@/store/ConfirmDialog/useConfirmDialogStore";
 import useBasicValidationStore from "@/store/useBasicValidationStore";
 import { validateInput, Validation } from "@/utils/validation/valdiation";

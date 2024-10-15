@@ -3,10 +3,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import SidebarMenu from "@/components/SidebarMenu";
 import NextTopLoader from "nextjs-toploader";
-import { ConfirmDialog } from "@/components/ConfirmDialog/ConfirmDialog";
-import { ConfirmInfo } from "@/components/ConfirmDialog/ConfirmInfo";
 import BasicLoading from "@/store/ConfirmDialog/Components/ConfirmLoading";
 import dd from "@/utils/dd/dd";
+import { ConfirmInfo } from "@/store/ConfirmDialog/Components/ConfirmInfo";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" id="main-layout">
+    <html lang="en" id="main-layout" data-theme="corporate">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-slate-100 dark:bg-slate-800 `}
       >
@@ -45,9 +44,7 @@ export default function RootLayout({
           speed={200}
           shadow="0 0 10px #2563eb,0 0 5px #2563eb"
         />
-        <div className="bg-black">
-          <BasicLoading />
-        </div>
+        <BasicLoading />
         <ConfirmInfo />
         <SidebarMenu>{children}</SidebarMenu>
       </body>
