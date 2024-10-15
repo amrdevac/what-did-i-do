@@ -1,5 +1,6 @@
 "use client";
-import { useConfirmationStore } from "../../store/ConfirmDialog/useConfirmDialogStore";
+
+import { useConfirmationStore } from "@/store/ConfirmDialog/useConfirmDialogStore";
 
 export const ConfirmDialog = ({ id }: { id: string }) => {
   const mainStore = useConfirmationStore();

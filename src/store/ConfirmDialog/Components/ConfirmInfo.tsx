@@ -1,8 +1,8 @@
 "use client";
 import useConfirmInfoStore from "@/store/ConfirmDialog/useConfirmInfoStore";
-import { useConfirmationStore } from "../../store/ConfirmDialog/useConfirmDialogStore";
 import { ChevronLeft, Error } from "@mui/icons-material";
 import dd from "@/utils/dd/dd";
+import { useConfirmationStore } from "../useConfirmDialogStore";
 
 export const ConfirmInfo = () => {
   const mainStore = useConfirmationStore();
