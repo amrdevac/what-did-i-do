@@ -1,7 +1,7 @@
 "use client";
 import useConfirmInfoStore from "@/store/ConfirmDialog/useConfirmInfoStore";
 import { useConfirmationStore } from "../../store/ConfirmDialog/useConfirmDialogStore";
-import { Check, ChevronLeft, Error } from "@mui/icons-material";
+import { ChevronLeft, Error } from "@mui/icons-material";
 import dd from "@/utils/dd/dd";
 
 export const ConfirmInfo = () => {
@@ -17,11 +17,7 @@ export const ConfirmInfo = () => {
       >
         <div className="modal-box bg-white dark:bg-slate-800 text-center flex flex-col gap-3 justify-center items-center">
           <h3 className="font-bold text-lg">Info</h3>
-          {infoStore.info.obj ? (
-            <Error fontSize="large" className="text-warning" />
-          ) : (
-            <Check fontSize="large" className="text-success" />
-          )}
+          <Error fontSize="large" className="text-warning" />
           <p className=" first-letter:capitalize">{infoStore.info.msg}</p>
           {infoStore.info.obj &&
             errorMatrix &&

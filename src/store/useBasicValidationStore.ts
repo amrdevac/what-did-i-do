@@ -38,9 +38,9 @@ const useBasicValidationStore = create<BasicValidationForm>((set) => ({
 
     try {
       const response = await axios.get(
-        "https://error2.free.beeceptor.com/validation"
-        // "https://dummyjson.com/c/4c56-57ec-4a4f-9748"
-        // "https://hub.dummyapis.com/delay?seconds=3"
+        // "https://error2.free.beeceptor.com/validation"
+        // "https://dummyjson.com/c/3029-d29f-4014-9fb4"
+        "https://hub.dummyapis.com/delay?seconds=3"
       );
       return response.data;
     } catch (error) {

@@ -1,29 +1,30 @@
 import { create } from "zustand";
-import { DetailError } from "./useConfirmDialogStore";
 interface infoStruct {
-  errorMsg: string;
-  errorObj: any;
+  msg: string;
+  obj: any;
 }
 
 interface useConfirmInfo {
   info: infoStruct;
-  setDetailError: (payload: Partial<infoStruct>) => void;
+  loadingText: string;
+  setDetailInfo: (payload: Partial<infoStruct>) => void;
 }
 const useConfirmInfoStore = create<useConfirmInfo>((set, get) => ({
+  loadingText: "Loading",
   info: {
-    errorMsg: "",
+    msg: "",
     detailErrorMsg: "",
-    errorObj: "",
+    obj: "",
   },
 
-  setDetailError: (payload) => {
+  setDetailInfo: (payload) => {
     set({
       info: {
-        errorMsg: payload.errorMsg ?? "",
-        errorObj: payload.errorObj,
+        msg: payload.msg ?? "",
+        obj: payload.obj,
       },
     });
-  },
+  }
 }));
 
 export default useConfirmInfoStore;

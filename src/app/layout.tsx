@@ -5,7 +5,8 @@ import SidebarMenu from "@/components/SidebarMenu";
 import NextTopLoader from "nextjs-toploader";
 import { ConfirmDialog } from "@/components/ConfirmDialog/ConfirmDialog";
 import { ConfirmInfo } from "@/components/ConfirmDialog/ConfirmInfo";
-import BasicLoading from "@/components/Loading/BasicLoading";
+import BasicLoading from "@/store/ConfirmDialog/Components/ConfirmLoading";
+import dd from "@/utils/dd/dd";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -44,7 +45,9 @@ export default function RootLayout({
           speed={200}
           shadow="0 0 10px #2563eb,0 0 5px #2563eb"
         />
-        <BasicLoading />
+        <div className="bg-black">
+          <BasicLoading />
+        </div>
         <ConfirmInfo />
         <SidebarMenu>{children}</SidebarMenu>
       </body>

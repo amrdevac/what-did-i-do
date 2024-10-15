@@ -7,7 +7,6 @@ import BasicInput, {
 import { ConfirmDialog } from "@/components/ConfirmDialog/ConfirmDialog";
 import { useConfirmationStore } from "@/store/ConfirmDialog/useConfirmDialogStore";
 import useBasicValidationStore from "@/store/useBasicValidationStore";
-import dd from "@/utils/dd/dd";
 import { validateInput, Validation } from "@/utils/validation/valdiation";
 import ValidationParse from "@/utils/validation/valdiationParse";
 import { useEffect } from "react";
@@ -51,7 +50,6 @@ const ConfirmDialogPage = () => {
   return (
     <div>
       <ConfirmDialog id="confirm-dialog" />
-
       <div className="flex gap-3 text-on-dark">
         <div>Confirm Dialog V1</div>
       </div>
@@ -71,6 +69,7 @@ const ConfirmDialogPage = () => {
             idModal: "confirm-dialog",
             useStore: useBasicValidationStore,
             confirmText: "Apakah anda yakin ingin melakukan hal ini ?",
+            finishText:"berhasil",
             withCustomLoading: true,
             actionOk: [
               {
@@ -84,9 +83,14 @@ const ConfirmDialogPage = () => {
                 loadingText: "Memuat data",
               },
               {
-                run: () => {
-                  console.log(2);
+                run: () => mainStore.fetchTodo(),
+                detailError: {
+                  colError: "validationErrors",
+                  typeError: "looping",
+                  typeValue: "objectArr",
+                  objColError: "message",
                 },
+                loadingText: "Menyimpan data",
               },
               {
                 run: () => {

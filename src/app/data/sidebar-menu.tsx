@@ -42,34 +42,34 @@ export const menuItems: MenuItem[] = [
     label: "Confirm Dialog",
     url: "/frontend/confirm-dialog",
   },
-  {
-    icon: "",
-    label: "Backend",
-    url: "#",
-  },
-  {
-    icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
-    label: "Confirm Dialog",
-    url: "123",
-  },
-  {
-    icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
-    label: "Basic Table",
-    url: "123",
-  },
-  {
-    icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
-    label: "Basic Form",
-    url: "123",
-  },
-  {
-    icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
-    label: "Form Validation",
-    url: "123",
-  },
-  {
-    icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
-    label: "Confirm Dialog",
-    url: "123",
-  },
+  // {
+  //   icon: "",
+  //   label: "Backend",
+  //   url: "#",
+  // },
+  // {
+  //   icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
+  //   label: "Confirm Dialog",
+  //   url: "123",
+  // },
+  // {
+  //   icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
+  //   label: "Basic Table",
+  //   url: "123",
+  // },
+  // {
+  //   icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
+  //   label: "Basic Form",
+  //   url: "123",
+  // },
+  // {
+  //   icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
+  //   label: "Form Validation",
+  //   url: "123",
+  // },
+  // {
+  //   icon: <GridViewTwoTone className="text-primary" fontSize="inherit" />,
+  //   label: "Confirm Dialog",
+  //   url: "123",
+  // },
 ];

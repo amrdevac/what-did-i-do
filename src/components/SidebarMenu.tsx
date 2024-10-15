@@ -1,6 +1,8 @@
 "use client";
 import { menuItems } from "@/app/data/sidebar-menu";
-import { Cottage } from "@mui/icons-material";
+import BasicLoading from "@/store/ConfirmDialog/Components/ConfirmLoading";
+import { Cottage, GitHub, LinkedIn } from "@mui/icons-material";
+import Image from "next/image";
 import { useRouter } from "nextjs-toploader/app";
 import React, { ChangeEvent, useEffect, useState } from "react";
 
@@ -44,16 +46,41 @@ const SidebarMenu = ({ children }: { children: React.ReactNode }) => {
             <div className=" text-sm">Helo</div>
           </div>
           {/* Short Profile */}
-          <div className="h-40  border-b  bg-on-dark">
-            <Cottage fontSize="inherit" className="text-base-100" />
-            <div className="text-base-100 text-sm">Helo</div>
+          <div className="h-40  border-b  bg-on-dark text-center flex items-center justify-center flex-col   gap-4">
+            <Image
+              src={
+                "https://media.licdn.com/dms/image/v2/C4E03AQH51UzIQp50iA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1653062416024?e=1734566400&v=beta&t=2UKqCjEgOK4XVPdhBvCLeSwRF7Px5AvBHJQo8e0M0DE "
+              }
+              alt="profil-image"
+              width={50}
+              height={50}
+              className="rounded-full"
+            />
+            <div className="text-on-dark">
+              <div className="text-base-100 text-sm text-on-dark">Fahmi Amrullah</div>
+              <div className="flex justify-center items-center gap-2">
+                <div
+                  className="text-primary cursor-pointer "
+                  onClick={() => {
+                    window.open(
+                      "https://www.linkedin.com/in/fahmi-amrullah-36806b1a0/"
+                    );
+                  }}
+                >
+                  <LinkedIn fontSize="inherit"  />
+                </div>
+                <div className="text-primary cursor-pointer "
+                onClick={()=>{
+                  window.open("https://github.com/amrdevac")
+                }}  
+                >
+                  <GitHub fontSize="inherit" />
+                </div>
+              </div>
+            </div>
           </div>
           {/* What i do */}
           <div className="text-sm">
-            <div className="font-bold uppercase  text-primary mt-2 p-2">
-              What i do
-            </div>
-
             <div className="flex flex-col">
               {menuItems.map((item, index) => (
                 <div key={index}>
@@ -76,6 +103,8 @@ const SidebarMenu = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
         </div>
+
+
 
         <div className=" bg-white  dark:bg-slate-900 shadow-lg  rounded-xl w-full p-5">
           {children}
